@@ -1,40 +1,35 @@
-import {
-  GETTING_FRIENDS_START,
-  GETTING_FRIENDS_SUCCESS,
-  GETTING_FRIENDS_FAILURE
-} from "../actions";
+import { LOGGING_START, LOGGING_SUCCESS, LOGGING_FAILURE } from "../actions";
 
 const initialState = {
-  friends: [],
-  fetchingData: false,
-  fetchingError: null
+  isLogging: false,
+  loginError: null
 };
 
-const friendsListReducer = (state = initialState, action) => {
+const loginReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GETTING_FRIENDS_START:
+    case LOGGING_START:
       return {
         ...state,
-        fetchingData: true
+        isLogging: true
       };
 
-    case GETTING_FRIENDS_SUCCESS:
+    case LOGGING_SUCCESS:
       return {
         ...state,
-        fetchingError: null,
-        fetchingData: false,
-        friends: action.payload
+        isLogging: false,
+        loginError: null
       };
 
-    case GETTING_FRIENDS_FAILURE:
+    case LOGGING_FAILURE:
       return {
         ...state,
-        fetchingError: action.payload,
-        fetchingData: false
+        isLogging: false,
+        loginError: action.payload
       };
+
     default:
       return state;
   }
 };
 
-export default friendsListReducer;
+export default loginReducer;
